@@ -55,7 +55,7 @@ createPizza({ body }, res) {
 //update pizza by id
 updatePizza({ params, body }, res) {
     //new:true must be set with findoneandupdate method or else it will not update and just return the original doc.
-    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+    Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
     .then(dbPizzaData => {
         if (!dbPizzaData) {
             res.status(404).json({ message: 'No pizza found with this id!' });
